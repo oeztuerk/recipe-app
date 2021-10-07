@@ -13,6 +13,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,15 +24,17 @@ public class Recipe
     private Long id;
 
     private String description;
-    private Integer preptime;
+    private Integer prepTime;
     private Integer cookTime;
     private Integer servings;
     private String source;
     private String url;
+
+    @Lob
     private String directions;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     @Lob
     private Byte[] image;
@@ -46,7 +49,7 @@ public class Recipe
     @JoinTable(name = "recipe_category",
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     public Set<Category> getCategories()
     {
@@ -98,14 +101,14 @@ public class Recipe
         this.description = description;
     }
 
-    public Integer getPreptime()
+    public Integer getPrepTime()
     {
-        return preptime;
+        return prepTime;
     }
 
-    public void setPreptime(Integer preptime)
+    public void setPrepTime(Integer prepTime)
     {
-        this.preptime = preptime;
+        this.prepTime = prepTime;
     }
 
     public Integer getCookTime()
