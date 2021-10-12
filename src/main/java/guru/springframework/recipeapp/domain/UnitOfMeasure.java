@@ -1,11 +1,14 @@
 package guru.springframework.recipeapp.domain;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+@Data
 @Entity
 public class UnitOfMeasure
 {
@@ -16,34 +19,4 @@ public class UnitOfMeasure
 
     @OneToOne
     private Ingredient ingredients;
-
-    public Ingredient getIngredients()
-    {
-        return ingredients;
-    }
-
-    public void setIngredients(Ingredient ingredients)
-    {
-        this.ingredients = ingredients;
-    }
-
-    public String getUom()
-    {
-        return uom;
-    }
-
-    public void setUom(String uom)
-    {
-        this.uom = uom;
-    }
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
 }
